@@ -1,0 +1,4 @@
+{
+admin: {name: 'admin', password: '123456'},
+shiqiyin:{name: 'shiqiyin', password: 'shiqiyin'}
+}
