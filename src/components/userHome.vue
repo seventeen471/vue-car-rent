@@ -1,7 +1,7 @@
 <template>
   <div class="userHomeDiv">
-    <header>汽车租凭管理系统</header>
-    <div class="welcomeHeader">欢迎您，用户：{{$store.state.userName}}</div>
+    <header>汽车租赁管理系统</header>
+    <div class="welcomeHeader">欢迎您，用户：{{username}}</div>
     <router-link to="/userLogin">
       <span>注销</span>
     </router-link>
@@ -17,7 +17,7 @@
       </router-link>
     </aside>
     <div class="main"><router-view></router-view></div>
-    <footer>南京林业大学信息科学技术学院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者：施启银 马赛</footer>
+    <footer>南京林业大学信息科学技术学院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者：施启银</footer>
   </div>
 </template>
 
@@ -37,6 +37,31 @@
     methods: {
       updatePassword(){
       },
+    },
+    mounted() {
+      var arr = document.cookie.split(';');
+      var userArr = [];
+      for(let i=0;i<arr.length;i++){
+        if (arr[i].trim().startsWith('user')){
+          userArr.push(arr[i])
+        }
+      }
+      let getname = userArr.toString().substring(userArr.toString().indexOf('=')+1);
+      if(this.$store.state.userName==''){
+        this.$store.state.userName = getname;
+      }
+      this.username = this.$store.state.userName;
+
+      var passwordArr = [];
+      for(let i=0;i<arr.length;i++){
+        if (arr[i].trim().startsWith('password')){
+          passwordArr.push(arr[i])
+        }
+      }
+      let getpassword = passwordArr.toString().substring(passwordArr.toString().indexOf('=')+1);
+      if(this.$store.state.userPassword==''){
+        this.$store.state.userPassword = getpassword;
+      }
     }
   }
 </script>
