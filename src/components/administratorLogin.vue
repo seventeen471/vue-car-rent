@@ -1,6 +1,6 @@
 <template>
   <div class="administratorLoginDiv">
-    <header>汽车租凭管理系统</header>
+    <header>汽车租赁管理系统</header>
     <div class="content">
       <div class="loginPanel">
         <p>管理员登录界面</p>
@@ -30,7 +30,7 @@
         </router-link>
       </div>
     </div>
-    <footer>南京林业大学信息科学技术学院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者：施启银 马赛</footer>
+    <footer>南京林业大学信息科学技术学院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者：施启银</footer>
   </div>
 </template>
 
@@ -70,6 +70,7 @@
         if (this.username==''||this.password==''){this.alertNotNull=true}else {
           if (this.password == this.adminPassword) {
             this.$store.commit('getAdminName',this.username);
+            document.cookie = 'admin='+this.$store.state.adminName;
             this.routeControl = '/administratorHome';
           } else {
             this.alert = true
