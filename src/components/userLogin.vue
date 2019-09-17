@@ -3,7 +3,7 @@
     <header>汽车租凭管理系统</header>
     <div class="content">
       <div class="loginPanel">
-        <p>欢迎登录汽车租凭管理系统</p>
+        <p>欢迎登录汽车租赁管理系统</p>
         <p><img class="userImg" src="../images/user.png">:<input type="text" v-model="username" placeholder="请输入用户名"></p>
         <p><img class="passwordImg" src="../images/password.png">:<input type="password" v-model="password" placeholder="请输入密码"></p>
           <el-alert
@@ -33,7 +33,7 @@
         </router-link>
       </div>
     </div>
-    <footer>南京林业大学信息科学技术学院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者：施启银 马赛</footer>
+    <footer>南京林业大学信息科学技术学院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者：施启银</footer>
   </div>
 </template>
 
@@ -55,7 +55,9 @@
             if (this.username==''||this.password==''){this.alertNotNull=true}else {
               if (this.password == localStorage.getItem(this.username)) {
                 this.$store.commit('getUserName',this.username);
+                document.cookie = 'user='+this.$store.state.userName;
                 this.$store.commit('getUserPassword',this.password);
+                document.cookie = 'password='+this.$store.state.userPassword;
                 this.routeControl = '/userHome'
               } else {
                 this.alert = true
