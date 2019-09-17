@@ -1,6 +1,6 @@
 <template>
   <div class="userHomeDiv">
-    <header>汽车租凭管理系统</header>
+    <header>汽车租赁管理系统</header>
     <div class="welcomeHeader">欢迎您，管理员：{{$store.state.adminName}}</div>
     <router-link to="/administratorLogin">
     <span>注销</span>
@@ -17,7 +17,7 @@
       </router-link>
     </aside>
     <div class="main"><router-view/></div>
-    <footer>南京林业大学信息科学技术学院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者：施启银 马赛</footer>
+    <footer>南京林业大学信息科学技术学院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者：施启银</footer>
   </div>
 </template>
 
@@ -35,6 +35,19 @@
       }
     },
     methods: {
+    },
+    mounted() {
+      var arr = document.cookie.split(';');
+      var adminArr = [];
+      for(let i=0;i<arr.length;i++){
+        if (arr[i].trim().startsWith('admin')){
+          adminArr.push(arr[i])
+        }
+      }
+      let getadmin = adminArr.toString().substring(adminArr.toString().indexOf('=')+1);
+      if(this.$store.state.adminName==''){
+        this.$store.state.adminName = getadmin;
+      }
     }
   }
 </script>
